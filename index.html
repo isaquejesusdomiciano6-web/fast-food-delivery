@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fast Food Delivery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-row">
+          <div class="brand-mark">FF</div>
+          <div>
+            <h1>Fast Food</h1>
+            <span>delivery</span>
+          </div>
+        </div>
+
+        <nav class="menu">
+          <button class="menu-btn active">Início</button>
+          <button class="menu-btn">Restaurantes</button>
+          <button class="menu-btn">Favoritos</button>
+          <button class="menu-btn">Ofertas</button>
+          <button class="menu-btn">Perfil</button>
+        </nav>
+
+        <div class="promo-box">
+          <p class="promo-label">Cupom do dia</p>
+          <h3>Frete grátis</h3>
+          <p>em pedidos acima de R$ 40</p>
+          <button>Usar agora</button>
+        </div>
+
+        <div class="status-card">
+          <p>Último pedido</p>
+          <strong>Pedido em rota</strong>
+          <span>Chegando em 12 min</span>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div class="search-box">
+            <span>🔎</span>
+            <input id="searchInput" type="text" placeholder="Buscar restaurante, prato ou cozinha" />
+          </div>
+          <div class="top-actions">
+            <div class="address-pill">
+              <span class="dot green"></span>
+              Centro • 1,4 km
+            </div>
+            <button class="icon-btn" aria-label="Notificações">🔔</button>
+          </div>
+        </header>
+
+        <section class="hero">
+          <div class="hero-copy">
+            <span class="tiny-badge">Hoje em alta</span>
+            <h2>Saboreie o melhor da cidade em poucos minutos</h2>
+            <p>Comida rápida, entrega expressa e pagamentos sem complicação.</p>
+            <div class="cta-row">
+              <button class="primary-btn">Ver ofertas</button>
+              <button class="secondary-btn">Novo pedido</button>
+            </div>
+          </div>
+
+          <div class="hero-panel">
+            <div class="metric-box">
+              <strong>4.9</strong>
+              <span>avaliação</span>
+            </div>
+            <div class="metric-box blue">
+              <strong>20 min</strong>
+              <span>média</span>
+            </div>
+            <div class="floating-card">
+              <span>Entrega grátis</span>
+              <strong>Brasil 2026</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="category-strip" id="categoryStrip"></section>
+
+        <section class="section-row">
+          <div class="section-header">
+            <h3>Restaurantes perto de você</h3>
+            <a href="#">Ver todos</a>
+          </div>
+          <div id="restaurantList" class="restaurant-list"></div>
+        </section>
+
+        <section class="section-row">
+          <div class="section-header">
+            <h3 id="catalogTitle">Menu do restaurante</h3>
+            <a href="#">Filtrar por categoria</a>
+          </div>
+          <div id="foodGrid" class="food-grid"></div>
+        </section>
+
+        <section class="section-row stats-panel">
+          <div class="stat-card">
+            <span>Pedidos ativos</span>
+            <strong id="activeOrders">328</strong>
+          </div>
+          <div class="stat-card">
+            <span>Entregadores</span>
+            <strong id="activeDrivers">94</strong>
+          </div>
+          <div class="stat-card">
+            <span>Tempo médio</span>
+            <strong>18 min</strong>
+          </div>
+          <div class="stat-card">
+            <span>Taxa de sucesso</span>
+            <strong>98.4%</strong>
+          </div>
+        </section>
+      </main>
+
+      <aside class="cart-panel">
+        <div class="cart-header">
+          <div>
+            <p>Seu pedido</p>
+            <h3>Fast Food</h3>
+          </div>
+          <span id="cartCount">0 itens</span>
+        </div>
+
+        <div class="address-box">
+          <span class="label">Entrega em</span>
+          <strong>Rua das Flores, 123</strong>
+          <small>Centro • São Paulo, SP</small>
+        </div>
+
+        <div class="mode-switch">
+          <button class="mode-btn active" data-mode="delivery">Entrega</button>
+          <button class="mode-btn" data-mode="pickup">Retirada</button>
+        </div>
+
+        <div id="cartItems" class="cart-items"></div>
+
+        <div class="totals-box">
+          <div class="row"><span>Subtotal</span><strong id="subtotal">R$ 0,00</strong></div>
+          <div class="row"><span>Frete</span><strong id="shipping">R$ 0,00</strong></div>
+          <div class="row total"><span>Total</span><strong id="total">R$ 0,00</strong></div>
+        </div>
+
+        <div class="payment-options">
+          <label class="pay-option">
+            <input type="radio" name="paymentMethod" value="card" checked />
+            <span>Cartão</span>
+          </label>
+          <label class="pay-option">
+            <input type="radio" name="paymentMethod" value="pix" />
+            <span>PIX</span>
+          </label>
+          <label class="pay-option">
+            <input type="radio" name="paymentMethod" value="cash" />
+            <span>Dinheiro</span>
+          </label>
+        </div>
+
+        <button id="checkoutBtn" class="checkout-btn">Finalizar pedido</button>
+      </aside>
+    </div>
+
+    <div id="checkoutModal" class="modal hidden" aria-modal="true" role="dialog">
+      <div class="modal-card">
+        <button id="closeModal" class="close-btn">×</button>
+        <h3>Confirmar pedido</h3>
+        <form id="checkoutForm">
+          <div class="field-row">
+            <label>
+              Nome
+              <input type="text" value="Maria Santos" required />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label>
+              Endereço
+              <input type="text" value="Rua das Flores, 123, Centro" required />
+            </label>
+          </div>
+
+          <div class="field-row two-col">
+            <label>
+              Número do cartão
+              <input type="text" value="4242 4242 4242 4242" required />
+            </label>
+            <label>
+              CVV
+              <input type="text" value="202" required />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label>
+              Observações
+              <textarea rows="3" placeholder="Sem cebola, molho à parte..."></textarea>
+            </label>
+          </div>
+
+          <button type="submit" class="submit-btn">Pagar agora</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
