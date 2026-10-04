@@ -1,0 +1,25 @@
+{
+  "name": "fast-food-delivery",
+  "version": "1.0.0",
+  "description": "Fast Food - delivery app completo com restaurante, carrinho, pagamento e rastreio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "delivery",
+    "food",
+    "fastfood",
+    "mock-api",
+    "fullstack"
+  ],
+  "author": "@isaquejesusdomiciano6-web",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
